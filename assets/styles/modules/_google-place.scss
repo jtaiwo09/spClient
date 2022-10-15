@@ -1,0 +1,81 @@
+.pac-container {
+  background: #282828;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 0px 22px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  width: fit-content !important;
+  max-width: 528px;
+}
+
+.pac-icon {
+  background-image: url('~/assets/images/map-marker.svg') !important;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: 0;
+  margin-right: 30px;
+}
+
+.pac-item {
+  padding: 12px 28px;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: normal;
+  letter-spacing: 0.01em;
+  color: #fff;
+  border: none;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(199, 198, 198, 0.05);
+
+  &:hover {
+    background: transparent;
+    color: #3DDC97;
+
+    .pac-item-query {
+      color: #3DDC97;
+    }
+  }
+}
+
+.pac-item-query {
+  font-weight: normal;
+  padding-right: 4px;
+  font-size: 14px;
+  line-height: normal;
+  letter-spacing: 0.01em;
+  color: #fff;
+  vertical-align: middle;
+}
+
+.pac-matched {
+  font-weight: normal;
+}
+
+.hdpi.pac-logo:after,
+.pac-logo:after {
+  display: none;
+}
+
+@media screen and (max-width: 560px) {
+  .pac-container {
+    max-width: 300px;
+    overflow: auto;
+  }
+
+  .pac-icon {
+    min-width: 15px;
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+  }
+
+  .pac-item {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+}

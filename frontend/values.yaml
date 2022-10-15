@@ -1,0 +1,55 @@
+deployment:
+ name: newfrontend-dev
+ app: newfrontend-dev
+ replicas: 1
+ image: spleet/newfrontend-dev
+ containerPort: 80
+ restartPolicy: Always
+ imagePullPolicy: Always
+ imagePullSecrets:
+   name: regcred
+service:
+  name: newfrontend-dev
+  port: 80
+ingress:
+  pathType: Prefix
+  host: new-dev.spleet.africa
+  name: newfrontend-dev
+secret:
+  name: frontend-secrets
+env:
+  normal:
+    BASE_URL: "https://api-dev.spleet.africa/v1/"
+    DOMAIN: "spleet.africa"
+    WELCOME_PAGE: "https://new-dev.spleet.africa/welcome"
+    EMAIL_VERIFICATION_PAGE: "https://new-dev.spleet.africa/email-verification"
+    FORGET_PASSWORD_PAGE: "https://new-dev.spleet.africa/reset-password"
+    VERIFY_CALLBACKURL: "https://new-dev.spleet.africa/tenants"
+  secret:
+   CLOUDINARY_URL: "https://api.cloudinary.com/v1_1/spleet-kanmi/upload"
+   CLOUDINARY_PRESET: "pjbxkdk0"
+   GOOGLE_CLIENT_ID: "996944685007-5boo1kvn1f7bsuacc5720ov1oah2gdrb.apps.googleusercontent.com"
+   PAYSTACK_PUBLIC: "pk_test_4efc2288b6a51480eb411de037b896c712cb3b0d"
+   FLUTTERWAVE_PUBLIC: "FLWPUBK_TEST-2a261c4a3f121a449a7473397226b776-X"
+   CONFIGURE_LOGIN: "https://spleet-inc.evolvefinance.co/login"
+   GOOGLE_MAP_KEY: "AIzaSyBMAYODSWcmdTJ5cZ5tErd2OwZJshPCdDE"
+   METAMAP_CLIENT_ID: "62824201c14554001c7f96fd"
+   METAMAP_FLOW_ID: "62824201c14554001c7f96fc"
+
+    
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

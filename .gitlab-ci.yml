@@ -1,0 +1,181 @@
+stages:
+  - build
+  - build-dev
+  - build-prod
+  - push-dev
+  - push-prod
+  - deploy-dev
+  - deploy-prod
+  - build-play
+  - deploy-play
+
+variables:
+    BUILD_TAG: $CI_MERGE_REQUEST_ID
+    DEV_TAG: $CI_COMMIT_SHORT_SHA
+    BASE_URL: $BASE_URL
+    CLOUDINARY_URL: $CLOUDINARY_URL
+    CLOUDINARY_PRESET: $CLOUDINARY_PRESET
+    GOOGLE_CLIENT_ID: $GOOGLE_CLIENT_ID
+    DOMAIN: $DOMAIN
+    PAYSTACK_PUBLIC: $PAYSTACK_PUBLIC
+    FLUTTERWAVE_PUBLIC: $FLUTTERWAVE_PUBLIC
+    CONFIGURE_LOGIN: $CONFIGURE_LOGIN
+    EMAIL_VERIFICATION_PAGE: $EMAIL_VERIFICATION_PAGE
+    FORGET_PASSWORD_PAGE: FORGET_PASSWORD_PAGE
+    WELCOME_PAGE: WELCOME_PAGE
+    VERIFY_CALLBACKURL: VERIFY_CALLBACKURL
+    GOOGLE_MAP_KEY: GOOGLE_MAP_KEY
+# build:
+#   image: docker:latest
+#   stage: build
+#   services:
+#     - docker:dind
+#   rules:
+#    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "development"'
+#      changes:
+#       - src/**/*
+#   script:
+#     - docker build -t spleet/host-front-end:$BUILD_TAG .
+build-dev:
+  image: docker:latest
+  stage: build-dev
+  services:
+    - docker:dind
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "development"'
+  before_script:
+    - docker login -u spleet -p $DOCKER_HUB_TOKEN
+  script:
+    - docker build -t spleet/newfrontend-dev:$DEV_TAG .
+    - docker push spleet/newfrontend-dev:$DEV_TAG
+
+build-play:
+  image: docker:latest
+  stage: build-play
+  services:
+    - docker:dind
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "playground"'
+  before_script:
+    - docker login -u spleet -p $DOCKER_HUB_TOKEN
+  script:
+    - docker build -t spleet/newfrontend-dev:$DEV_TAG .
+    - docker push spleet/newfrontend-dev:$DEV_TAG
+
+build-prod:
+  image: docker:latest
+  stage: build-prod
+  services:
+    - docker:dind
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+  before_script:
+    - docker login -u spleet -p $DOCKER_HUB_TOKEN
+  script:
+    - docker build -t spleet/newfrontend-prod:$DEV_TAG .
+    - docker push spleet/newfrontend-prod:$DEV_TAG
+
+# push-dev:
+#   image: docker:latest
+#   stage: push-dev
+#   rules:
+#    - if: '$CI_COMMIT_BRANCH == "development"'
+#      changes:
+#        - src/**/*
+#   services:
+#     - docker:dind
+#   before_script:
+#     - docker login -u spleet -p $DOCKER_HUB_TOKEN
+#   script:
+#     - docker pull spleet/host-front-end:$DEV_TAG
+#     - docker tag spleet/host-front-end:$DEV_TAG spleet/host-front-end:latest
+#     - docker push spleet/host-front-end:latest
+
+# push-prod:
+#     image: docker:latest
+#     stage: push-prod
+#     rules: 
+#       - if: '$CI_COMMIT_BRANCH == "master"'
+#     services:
+#       - docker:dind
+#     before_script:
+#       - docker login -u spleet -p $DOCKER_HUB_TOKEN
+#     script:
+#       - docker build -t  spleet/newfrontend-prod:$DEV_TAG .
+#       - docker push spleet/newfrontend-prod:$DEV_TAG
+
+# deploy-dev:
+#   stage: deploy-play
+#   image: dtzar/helm-kubectl
+#   rules:
+#    - if: '$CI_COMMIT_BRANCH == "development"'
+#   script:
+#     - kubectl config set-cluster k8s --server="${SERVER}"
+#     - kubectl config set clusters.k8s.certificate-authority-data ${CERTIFICATE_AUTHORITY_DATA}
+#     - kubectl config set-credentials gitlab --token="${USER_TOKEN}"
+#     - kubectl config set-context dev --cluster=k8s --user=gitlab
+#     - kubectl config use-context dev
+#     - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" dev-deploy.yaml
+#     - kubectl apply -f dev-deploy.yaml
+
+deploy-dev:
+  stage: deploy-dev
+  image:
+    name: bitnami/kubectl:latest
+    entrypoint: ['']
+  rules:
+   - if: '$CI_COMMIT_BRANCH == "development"'
+  script:
+    - kubectl config get-contexts
+    - kubectl config use-context spleetproduct/SpleetClient:frontend-dev
+    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" dev-deploy.yaml
+    #- kubectl get pods
+    - kubectl apply -f dev-deploy.yaml
+
+deploy-play:
+  stage: deploy-play
+  image: dtzar/helm-kubectl
+  rules:
+   - if: '$CI_COMMIT_BRANCH == "playground"'
+  script:
+    - kubectl config set-cluster k8s --server="${SERVER}"
+    - kubectl config set clusters.k8s.certificate-authority-data ${CERTIFICATE_AUTHORITY_DATA}
+    - kubectl config set-credentials gitlab --token="${USER_TOKEN}"
+    - kubectl config set-context playground --cluster=k8s --user=gitlab
+    - kubectl config use-context playground
+    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" play-deploy.yaml
+    - kubectl apply -f play-deploy.yaml
+
+
+# deploy-prod:
+#   stage: deploy-prod
+#   image: dtzar/helm-kubectl
+#   environment: production
+#   services:
+#     - docker:dind
+#   rules:
+#     - if: '$CI_COMMIT_BRANCH == "master"'
+#   before_script:
+#     - sudo apt-get update -y && sudo apt-get install sshpass
+#   script:
+#     - kubectl config set-cluster k8s --server="${SERVER}"
+#     - kubectl config set clusters.k8s.certificate-authority-data ${CERTIFICATE_AUTHORITY_DATA}
+#     - kubectl config set-credentials gitlab --token="${USER_TOKEN}"
+#     - kubectl config set-context prod --cluster=k8s --user=gitlab
+#     - kubectl config use-context prod
+#     - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" dev-deploy.yaml
+#     - kubectl apply -f dev-deploy.yaml
+      
+deploy-prod:
+  stage: deploy-prod
+  image:
+    name: bitnami/kubectl:latest
+    entrypoint: ['']
+  rules:
+   - if: '$CI_COMMIT_BRANCH == "master"'
+  script:
+    - kubectl config get-contexts
+    - kubectl config use-context spleetproduct/SpleetClient:prod-frontend
+    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" prod-deploy.yaml
+    #- kubectl get pods
+    - kubectl apply -f prod-deploy.yaml

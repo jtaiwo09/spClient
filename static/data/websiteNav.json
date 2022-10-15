@@ -1,0 +1,50 @@
+[
+    {
+        "name": "For Renters",
+        "others": [
+            {
+                "name": "Marketplace",
+                "icon": "marketplaceIcon",
+                "subText": "Search for properties",
+                "status": true,
+                "path": "/marketplace"
+            },
+            {
+                "name": "Rent now, Pay Later",
+                "icon": "rnplIcon",
+                "subText": "Request for a loan",
+                "status": true,
+                "path": "/#"
+            }
+        ]
+    },
+    {
+        "name": "For Landlords",
+        "others": [
+            {
+                "name": "Verify",
+                "icon": "verifyIcon",
+                "subText": "Confirm identity",
+                "status": true,
+                "path": "/host/verify"
+            },
+            {
+                "name": "List your space",
+                "icon": "listingIcon",
+                "subText": "Rent out Property",
+                "status": true,
+                "path": "/host/listing"
+            }
+        ]
+    },
+    {
+        "name": "Blog",
+        "path": "https://blog.spleet.africa/",
+        "target": "blank"
+    },
+    {
+        "name": "About Us",
+        "path": "/about",
+        "target": null
+    }
+]

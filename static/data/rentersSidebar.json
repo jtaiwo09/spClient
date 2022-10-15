@@ -1,0 +1,44 @@
+{
+    "firstLevel": [
+        {
+            "text": "Dashboard",
+            "icon": "HomeIcon",
+            "to": "/renter",
+            "links": [
+                "/renter/browse-marketplace"
+            ]
+        },
+        {
+            "text": "Bookings",
+            "icon": "DocumentIcon",
+            "to": "/renter/bookings",
+            "links": []
+        },
+        {
+            "text": "Subscriptions",
+            "icon": "LabelIcon",
+            "to": "/renter/subscriptions",
+            "links": []
+        },
+        {
+          "text": "Maintenance",
+          "icon": "StarIcon",
+          "to": "https://docs.google.com/forms/d/e/1FAIpQLSfr2Uncsksu1uf99kPNbZ3AIPEkB3a7g9gtgjIu3LH5z5Qv9A/viewform",
+          "links": []
+      },
+        {
+            "text": "Payments",
+            "icon": "WalletIcon",
+            "to": "/renter/payment",
+            "links": []
+        }
+    ],
+    "secondLevel": [
+        {
+            "text": "Account Settings",
+            "icon": "SettingsIcon",
+            "to": "/renter/account-settings",
+            "links": []
+        }
+    ]
+}

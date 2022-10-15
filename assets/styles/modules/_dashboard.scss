@@ -1,0 +1,118 @@
+.dashboard {
+  &__content {
+    background-color: #f4f4f4;
+    flex: 1;
+    overflow: hidden !important;
+    // padding-left: 36px;
+    padding-bottom: 42px;
+  }
+  &__verify {
+    padding-left: 35px;
+    padding-right: 20px;
+    &-top {
+      height: 130px;
+      width: 100%;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 61px;
+      padding-right: 57px;
+
+      .top-left {
+        .title {
+          @include text(
+            $color: #000000,
+            $font-weight: 700,
+            $font-size: 20px,
+            $line-height: 25px
+          );
+          margin-bottom: 11px;
+        }
+        .sub-title {
+          @include text($color: #242428);
+        }
+      }
+      .top-back {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        .back-text {
+          margin-left: 11px;
+          @include text($line-height: 23px, $color: #2f313d);
+        }
+      }
+      .top-right {
+        .top-icons {
+          display: flex;
+
+          .icon-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+
+            &.notification {
+              background: #18191c;
+              margin-right: 22px;
+            }
+            &.message {
+              background: rgba(255, 255, 255, 0.37);
+              border: 1px solid #f0f0f0;
+            }
+          }
+        }
+      }
+    }
+    &-bottom {
+      height: calc(100vh - 189px);
+      background-color: #fff;
+      border-radius: 6px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .empty {
+        width: fit-content;
+        text-align: center;
+
+        .title {
+          @include text(
+            $color: #000000,
+            $font-weight: 700,
+            $font-size: 20px,
+            $line-height: 25px
+          );
+          margin-bottom: 16px;
+        }
+        &-image {
+          width: 143px;
+          height: 146px;
+          object-fit: cover;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 24px;
+        }
+        &-text {
+          max-width: 399px;
+          @include text(
+            $color: #77777d,
+            $font-family: 'Open Sans',
+            $line-height: 23px
+          );
+          margin-bottom: 27px;
+        }
+        &-link {
+          color: #2e48da;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

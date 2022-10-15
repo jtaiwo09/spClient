@@ -1,0 +1,50 @@
+{
+    "firstLevel": [
+        {
+            "text": "Dashboard",
+            "icon": "HomeIcon",
+            "to": "/host",
+            "links": []
+        },
+        {
+            "text": "Listing",
+            "icon": "DocumentIcon",
+            "to": "/host/listing",
+            "links": []
+        },
+        {
+            "text": "Bookings",
+            "icon": "ShieldIcon",
+            "to": "/host/bookings",
+            "links": []
+        },
+        {
+            "text": "Subscriptions",
+            "icon": "LabelIcon",
+            "to": "/host/subscriptions",
+            "links": []
+        },
+        {
+            "text": "Verify Tenants",
+            "icon": "CheckIcon",
+            "to": "/host/verify",
+            "links": [
+                "/host/verify/create"
+            ]
+        },
+        {
+            "text": "Payments",
+            "icon": "DocumentIcon",
+            "to": "/host/payments",
+            "links": []
+        }
+    ],
+    "secondLevel": [
+        {
+            "text": "Account Settings",
+            "icon": "SettingsIcon",
+            "to": "/host/account-settings",
+            "links": []
+        }
+    ]
+}

@@ -1,0 +1,76 @@
+/* MEDIA QUERIES ----------- */
+
+$breakpoint-small: 600px;
+$breakpoint-med-small: 750px;
+$breakpoint-med: 980px;
+
+/* MIXINS FOR MEDIA QUERIES ----------- */
+
+@mixin screen($size, $type: max, $pixels: 600) {
+  @if $size== 'tiny' {
+    @media screen and (max-width: 400px) {
+      @content;
+    }
+  }
+  @if $size== 'small' {
+    @media screen and (max-width: $breakpoint-small) {
+      @content;
+    }
+  }
+  @if $size== 'med-small' {
+    @media screen and (max-width: $breakpoint-med-small) {
+      @content;
+    }
+  } @else if $size== 'med' {
+    @media screen and (max-width: $breakpoint-med) {
+      @content;
+    }
+  } @else if $size== 'mid' {
+    @media screen and (min-width: $breakpoint-small) and (max-width: $breakpoint-med) {
+      @content;
+    }
+  } @else if $size== 'large' {
+    @media screen and (min-width: $breakpoint-med) {
+      @content;
+    }
+  }
+  //   @else if $size== 'custom' {
+  //     @media screen and ($type + -width: $pixels + px) {
+  //       @content;
+  //     }
+  //   }
+}
+
+$white: #fff;
+
+@mixin text(
+  $color: $white,
+  $font-size: 14px,
+  $font-weight: 400,
+  $font-family: 'Cerebri Sans',
+  $line-height: 18px,
+  $letter-space: initial
+) {
+  font-family: $font-family;
+  font-style: normal;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: $line-height;
+  color: $color;
+  letter-spacing: $letter-space;
+}
+
+@mixin header(
+  $color: '#0F0C3D',
+  $font-size: 24px,
+  $font-weight: 700,
+  $font-family: 'Cerebri Sans',
+  $line-height: 30px
+) {
+  font-family: $font-family;
+  font-style: normal;
+  font-weight: $font-weight;
+  font-size: $font-size;
+  line-height: $line-height;
+  color: $color;
+}

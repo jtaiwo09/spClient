@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+.icon_wrap {
+    @apply s-rounded-full s-flex s-items-center s-justify-center s-w-14 s-h-14 s-shrink-0
+}
+}
+
+html {
+    scroll-behavior: smooth;
+}

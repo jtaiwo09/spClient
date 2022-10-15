@@ -1,0 +1,180 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: newfrontend-prod
+  namespace: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: newfrontend-prod
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: newfrontend-prod
+    spec:
+      containers:
+        - name: newfrontend-prod
+          image: spleet/newfrontend-prod:<VERSION>
+          env:
+          - name: BASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secrets
+                key: BASE_URL
+          - name: CLOUDINARY_URL
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secrets
+                key: CLOUDINARY_URL
+          - name: CLOUDINARY_PRESET
+            valueFrom: 
+             secretKeyRef:
+               name: frontend-secrets
+               key: CLOUDINARY_PRESET
+          - name: GOOGLE_CLIENT_ID
+            valueFrom:
+             secretKeyRef:
+               name: frontend-secrets
+               key: GOOGLE_CLIENT_ID
+          - name: DOMAIN
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secrets
+                key: DOMAIN
+          - name: PAYSTACK_PUBLIC
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secrets
+                key: PAYSTACK_PUBLIC
+          - name: FLUTTERWAVE_PUBLIC
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secrets
+                key: FLUTTERWAVE_PUBLIC
+          - name: CONFIGURE_LOGIN
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secrets
+                key: CONFIGURE_LOGIN
+          - name: EMAIL_VERIFICATION_PAGE
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secrets
+                key: EMAIL_VERIFICATION_PAGE
+          - name: FORGET_PASSWORD_PAGE
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secrets
+                key: FORGET_PASSWORD_PAGE
+          - name: WELCOME_PAGE
+            valueFrom:
+              secretKeyRef: 
+                name: frontend-secrets
+                key: WELCOME_PAGE
+          - name: VERIFY_CALLBACKURL
+            valueFrom:
+              secretKeyRef:
+                name: frontend-secrets
+                key: VERIFY_CALLBACKURL
+          - name: GOOGLE_MAP_KEY
+            valueFrom: 
+              secretKeyRef:
+                name: frontend-secrets
+                key: GOOGLE_MAP_KEY
+          - name: METAMAP_CLIENT_ID
+            valueFrom: 
+              secretKeyRef:
+                name: frontend-secrets
+                key: METAMAP_CLIENT_ID
+          - name: METAMAP_FLOW_ID
+            valueFrom: 
+              secretKeyRef:
+                name: frontend-secrets
+                key: METAMAP_FLOW_ID
+          ports:
+          - containerPort: 80
+            protocol: TCP
+          livenessProbe:
+            httpGet:
+             path: /
+             port: 80
+            initialDelaySeconds: 100
+            periodSeconds: 240
+            failureThreshold: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 100
+            periodSeconds: 240
+          
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      imagePullSecrets:
+        - name: regcred
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: newfrontend-prod
+  namespace: prod
+  labels:
+    app: newfrontend-prod
+    service: newfrontend-prod
+spec:
+  ports:
+  - port: 80
+    name: http
+  selector:
+    app: newfrontend-prod
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: newfrontend-prod
+  namespace: prod
+  annotations:
+    nginx.ingress.kubernetes.io/default-backend: ingress-nginx-controller
+    kubernetes.io/ingress.class: nginx 
+    ## tells ingress to check for regex in the config file
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+    nginx.ingress.kubernetes.io/enable-cors: 'true'
+    nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST, PATCH, OPTIONS, DELETE"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-max-age: "600"
+#     nginx.ingress.kubernetes.io/configuration-snippet: |
+#     more_set_headers "Access-Control-Allow-Origin: $http_origin";
+    #certmanager.k8s.io/cluster-issuer: letsencrypt
+#     kubernetes.io/ingress.class: nginx
+#     service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
+
+spec:
+  rules:
+  - host: "spleet.africa"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: newfrontend-prod
+            port:
+              number: 80
+

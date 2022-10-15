@@ -1,0 +1,134 @@
+{
+  "team": [
+    {
+      "name": "Akintola Adesanmi",
+      "position": "CEO/Co-founder",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665149785/frontend-images/about-us-headshots/tola.svg"
+    },
+    {
+      "name": "Daniella Ajala",
+      "position": "COO/Co-founder",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139362/frontend-images/about-us-headshots/dani.svg"
+    },
+    {
+      "name": "Felicia Adeleke",
+      "position": "Product",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/v1665152696/frontend-images/about-us-headshots/fel.png"
+    },
+    {
+      "name": "Michael Owolabi",
+      "position": "Engineering",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139407/frontend-images/about-us-headshots/mic.svg"
+    },
+    {
+      "name": "Lamide Aranmolate",
+      "position": "Product",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139401/frontend-images/about-us-headshots/lamide.svg"
+    },
+    {
+      "name": "Chinedu Egwunye",
+      "position": "Operations",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139359/frontend-images/about-us-headshots/chinedu.svg"
+    },
+    {
+      "name": "Nifemi Olulanke",
+      "position": "Product",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139425/frontend-images/about-us-headshots/nifemi.svg"
+    },
+    {
+      "name": "Sharon Onwuazor",
+      "position": "Operations",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139433/frontend-images/about-us-headshots/sharon.svg"
+    },
+    {
+      "name": "Boluwatife Osewa",
+      "position": "Growth",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139367/frontend-images/about-us-headshots/bolu.svg"
+    },
+    {
+      "name": "Ayobami Adeleke",
+      "position": "Engineering",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139359/frontend-images/about-us-headshots/ayo.svg"
+    },
+    {
+      "name": "Bruno Ekwealor",
+      "position": "Business",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139367/frontend-images/about-us-headshots/bruno.svg"
+    },
+    {
+      "name": "Ezekiel Turaki",
+      "position": "Engineering",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/v1665149760/frontend-images/about-us-headshots/ezekiel.svg"
+    },
+    {
+      "name": "Francisca Tanimojo",
+      "position": "Operations",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139393/frontend-images/about-us-headshots/francisca.svg"
+    },
+    {
+      "name": "Joseph Taiwo",
+      "position": "Engineering",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139429/frontend-images/about-us-headshots/taiwo.svg"
+    },
+    {
+      "name": "Karen Abah",
+      "position": "Business",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139383/frontend-images/about-us-headshots/karen.svg"
+    },
+    {
+      "name": "Maduabuchi Okonkwo",
+      "position": "Engineering",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139388/frontend-images/about-us-headshots/madu.svg"
+    },
+    {
+      "name": "Motunrayo Okelola",
+      "position": "Business",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139409/frontend-images/about-us-headshots/mots.svg"
+    },
+    {
+      "name": "Olaide Jinadu",
+      "position": "Operations",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139409/frontend-images/about-us-headshots/olaide.svg"
+    },
+    {
+      "name": "Rasheed Omiwale",
+      "position": "Engineering",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139416/frontend-images/about-us-headshots/rasheed.svg"
+    },
+    {
+      "name": "Samuel Shittu",
+      "position": "Operations",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139442/frontend-images/about-us-headshots/sam.svg"
+    },
+    {
+      "name": "Temitope Badmus",
+      "position": "Operations",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139436/frontend-images/about-us-headshots/temitope.svg"
+    },
+    {
+      "name": "Tileyemi Babajide",
+      "position": "Operations",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139445/frontend-images/about-us-headshots/tile.svg"
+    },
+    {
+      "name": "Oluwatofunmi Alo",
+      "position": "Growth",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139446/frontend-images/about-us-headshots/tofs.svg"
+    },
+    {
+      "name": "Essien Ekanem",
+      "position": "Engineering",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139432/frontend-images/about-us-headshots/essien.svg"
+    },
+    {
+      "name": "Ibukunoluwa Fola-Bolumole",
+      "position": "Growth",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665149765/frontend-images/about-us-headshots/ibuks.svg"
+    },
+    {
+      "name": "Fareedah Abdulsalam",
+      "position": "Growth",
+      "image": "https://res.cloudinary.com/spleetng/image/upload/q_60/v1665139370/frontend-images/about-us-headshots/fareedah.svg"
+    }
+  ]
+}
